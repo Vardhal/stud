@@ -13,9 +13,10 @@ class Stud:
     RUS = "абвгдеёжзийклмнопрстуфхцчшщьыэюя-"
     RUS_UPPER = RUS.upper()
     
-    def __init__(self, fn, id):
+    def __init__(self, fn, id, order):
         self.verify_fn(fn)   
         self.verify_id(id)
+        self.verify_order(order)
     
     @classmethod
     def verify_fn(cls, fn):
@@ -41,6 +42,19 @@ class Stud:
         
         if len(id) > 6:
             raise ValueError("id can`t have more than 6 values")
+        
+    @classmethod
+    def verify_order(cls, order):
+        if type(order) != str:
+            raise TypeError("Must be line")
+        
+        ord = order.split()
+        if len(ord) != 3 or len(ord[0] != 4) or len(ord[1] !=5):
+            raise TypeError("Please fill 3 sectors")
+        
+        for s in ord:
+            if not s.isdigit():
+                raise TypeError("Please enter digit number")         
         
                        
         
