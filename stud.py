@@ -13,7 +13,7 @@ class Stud:
     RUS = "абвгдеёжзийклмнопрстуфхцчшщьыэюя-"
     RUS_UPPER = RUS.upper()
     
-    def __init__(self, fn, id, order):
+    def __init__(self, fn, id, order, form):
         self.verify_fn(fn)   
         self.verify_id(id)
         self.verify_order(order)
@@ -54,7 +54,21 @@ class Stud:
         
         for s in ord:
             if not s.isdigit():
-                raise TypeError("Please enter digit number")         
+                raise TypeError("Please enter digit number")
+            
+    @classmethod
+    def verify_fn(cls, form):
+        if type(form) != str:
+            raise TypeError ("Must be line")
+        
+        l = ascii_letters + cls.RUS + cls.RUS_UPPER
+        
+        g = form.split()
+        for i in g:
+            if len(g) < 1:
+                raise TypeError("One symbol should be added")
+            if len(i.strip(l)) != 0:
+                raise TypeError("Only letters and hyphen")                     
         
                        
         
