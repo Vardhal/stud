@@ -13,10 +13,12 @@ class Stud:
     RUS = "абвгдеёжзийклмнопрстуфхцчшщьыэюя-"
     RUS_UPPER = RUS.upper()
     
-    def __init__(self, fn, id, order, form):
+    def __init__(self, fn, id, order, form, data):
         self.verify_fn(fn)   
         self.verify_id(id)
         self.verify_order(order)
+        self.verify_form(form)
+        self.verify_data(data)
     
     @classmethod
     def verify_fn(cls, fn):
@@ -24,7 +26,7 @@ class Stud:
             raise TypeError ("Must be line")
         
         f = fn.split()
-        if len(f) != 3:
+        if len(f) > 3:
             raise TypeError("Please enter full name!") 
         
         let = ascii_letters + cls.RUS + cls.RUS_UPPER
@@ -40,8 +42,6 @@ class Stud:
         if type(id) != int:
             raise TypeError("Must be digits")
         
-        if len(id) > 6:
-            raise ValueError("id can`t have more than 6 values")
         
     @classmethod
     def verify_order(cls, order):
@@ -49,7 +49,7 @@ class Stud:
             raise TypeError("Must be line")
         
         ord = order.split()
-        if len(ord) != 3 or len(ord[0] != 4) or len(ord[1] !=5):
+        if len(ord) != 3 or len(ord[0]) != 2 or len(ord[1]) !=2 or len(ord[2]) !=5:
             raise TypeError("Please fill 3 sectors")
         
         for s in ord:
@@ -57,18 +57,32 @@ class Stud:
                 raise TypeError("Please enter digit number")
             
     @classmethod
-    def verify_fn(cls, form):
+    def verify_form(cls, form):
         if type(form) != str:
             raise TypeError ("Must be line")
         
         l = ascii_letters + cls.RUS + cls.RUS_UPPER
         
         g = form.split()
-        for i in g:
+        for p in g:
             if len(g) < 1:
                 raise TypeError("One symbol should be added")
-            if len(i.strip(l)) != 0:
-                raise TypeError("Only letters and hyphen")                     
+            if len(p.strip(l)) != 0:
+                raise TypeError("Only letters and hyphen")
+            
+    @classmethod
+    def verify_data(cls, data):
+        if type(data) != str:
+            raise TypeError("Must be line")
+        
+        dat = data.split()
+        if len(dat) != 2:
+            raise TypeError("Please fill 3 sectors")
+        
+            
+            
+p = Stud("Baba Jora Pasha", 245678, "20 04 20134", 'ochnaya', "september 2013")
+print(p)                                             
         
                        
         
