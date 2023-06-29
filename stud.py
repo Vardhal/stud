@@ -13,27 +13,34 @@ class Stud:
     RUS = "абвгдеёжзийклмнопрстуфхцчшщьыэюя-"
     RUS_UPPER = RUS.upper()
     
-    def __init__(self, fio):
-        self.verify_fio(fio)   
+    def __init__(self, fn, id):
+        self.verify_fn(fn)   
+        self.verify_id(id)
     
     @classmethod
-    def verify_fio(cls, fio):
-        if type(fio) != str:
-            raise TypeError ("Должна быть строка")
+    def verify_fn(cls, fn):
+        if type(fn) != str:
+            raise TypeError ("Must be line")
         
-        f = fio.split()
+        f = fn.split()
         if len(f) != 3:
-            raise TypeError("Фамилия, имя, отчество полное!") 
+            raise TypeError("Please enter full name!") 
         
         let = ascii_letters + cls.RUS + cls.RUS_UPPER
         
         for i in f:
             if len(f) < 1:
-                raise TypeError("Хотя бы 1 символ")
+                raise TypeError("One symbol should be added")
             if len(i.strip(let)) != 0:
-                raise TypeError("Только буквы и дефис")   
+                raise TypeError("Only letters and hyphen")
+           
+    @classmethod
+    def verify_id(cls, id):
+        if type(id) != int:
+            raise TypeError("Must be digits")
         
-p = Stud
-x = p.verify_fio("ff")
-print(x)         
+        if len(id) > 6:
+            raise ValueError("id can`t have more than 6 values")
+        
+                       
         
