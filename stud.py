@@ -1,12 +1,5 @@
 from string import ascii_letters   
  
- 
-class Helper:
-    def __set_name__(self, owner, name):
-        return self.name
-    
-    
-
     
 class Stud:
     
@@ -77,9 +70,15 @@ class Stud:
         
         dat = data.split()
         if len(dat) != 2:
-            raise TypeError("Please fill 3 sectors")
-        
-            
+            raise TypeError("Please fill 2 sectors")
+
+     @property
+     def fn(self)
+            return self.fn
+
+     @fn.setter
+     def fn(self,fn)
+        self.fn = fn
             
 p = Stud("Baba Jora Pasha", 245678, "20 04 20134", 'ochnaya', "september 2013")
 print(p)                                             
