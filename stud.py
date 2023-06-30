@@ -7,7 +7,7 @@ class Stud:
     RUS_UPPER = RUS.upper()
     
     def __init__(self, fn, id, order, form, data):
-        self.verify_fn(fn)   
+        self.verify_fn(fn)
         self.verify_id(id)
         self.verify_order(order)
         self.verify_form(form)
@@ -19,7 +19,7 @@ class Stud:
             raise TypeError ("Must be line")
         
         f = fn.split()
-        if len(f) > 3:
+        if len(f) != 2:
             raise TypeError("Please enter full name!") 
         
         let = ascii_letters + cls.RUS + cls.RUS_UPPER
@@ -72,15 +72,8 @@ class Stud:
         if len(dat) != 2:
             raise TypeError("Please fill 2 sectors")
 
-     @property
-     def fn(self)
-            return self.fn
-
-     @fn.setter
-     def fn(self,fn)
-        self.fn = fn
             
-p = Stud("Baba Jora Pasha", 245678, "20 04 20134", 'ochnaya', "september 2013")
+p = Stud("Jora Sedakov", 245678, "12 24 12454", 'ochnaya', "september 2013")
 print(p)                                             
         
                        
